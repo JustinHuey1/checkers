@@ -25,7 +25,12 @@
 	background-color:#FF0000;
 }
 
-.piece{
+.red{
+    width:45px;
+	height:45px;
+    padding:2px;
+}
+.black{
     width:45px;
 	height:45px;
     padding:2px;
