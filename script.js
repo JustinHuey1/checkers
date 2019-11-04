@@ -1,136 +1,144 @@
+
 var turnCounter = 1;
 $(".square").click(function() {
-    console.log($(this).css("background-color"));
     if ($(this).css("background-color") === 'rgb(255, 255, 0)') {
-        console.log("works")
         resetSquareColors()
     }
 });
 $("img").click(function() {
     resetSquareColors()
-    var moveLeft = ""
-    var moveRight = ""
-    var moveLeftJump = ""
-    var moveRightJump = ""
+    var moveLeftRed = ""
+    var moveRightRed = ""
+    var moveLeftRedJump = ""
+    var moveRightRedJump = ""
+    var moveLeftBlack = ""
+    var moveRightBlack = ""
+    var moveLeftBlackJump = ""
+    var moveRightBlackJump = ""
     var parentId = $(this).parent().attr('id');
-    console.log($(parentId).contents().attr('class'))
     if (turnCounter === 1 && $(this).attr('class') === "red") {
-        moveLeft = ""
-        moveRight = ""
-        moveLeftJump = ""
-        moveRightJump = ""
-        moveLeft = 9 + Number(parentId);
-        moveRight = 11 + Number(parentId);
-        moveLeftJump = 18 + Number(parentId);
-        moveRightJump = 22 + Number(parentId);
-        if ($("#" + moveLeftJump).contents().attr('class') !== "red" && $("#" + moveLeftJump).contents().attr('class') !== "black" && $("#" + moveLeft).contents().attr('class') === "black") {
-            console.log($("#" + moveLeft).contents().attr('class'))
-            $("#" + moveLeftJump).css("background-color", "yellow");
+        moveLeftRed = ""
+        moveRightRed = ""
+        moveLeftRedJump = ""
+        moveRightRedJump = ""
+        moveLeftRed = 9 + Number(parentId);
+        moveRightRed = 11 + Number(parentId);
+        moveLeftRedJump = 18 + Number(parentId);
+        moveRightRedJump = 22 + Number(parentId);
+        if ($("#" + moveLeftRedJump).contents().attr('class') !== "red" && $("#" + moveLeftRedJump).contents().attr('class') !== "black" && $("#" + moveLeftRed).contents().attr('class') === "black") {
+            $("#" + moveLeftRedJump).css("background-color", "yellow");
         }
-        else if($("#" + moveLeft).attr('class') !== "red" && $("#" + moveLeft).attr('class') !== "black"){
-            $("#" + moveLeft).css("background-color", "yellow");
+        if ($("#" + moveLeftRed).attr('class') !== "red" && $("#" + moveLeftRed).attr('class') !== "black") {
+            $("#" + moveLeftRed).css("background-color", "yellow");
         }
-        if ($("#" + moveRightJump).contents().attr('class') !== "red" && $("#" + moveRightJump).contents().attr('class') !== "black" && $("#" + moveRight).contents().attr('class') === "black") {
-            $("#" + moveRightJump).css("background-color", "yellow");
+        if ($("#" + moveRightRedJump).contents().attr('class') !== "red" && $("#" + moveRightRedJump).contents().attr('class') !== "black" && $("#" + moveRightRed).contents().attr('class') === "black") {
+            $("#" + moveRightRedJump).css("background-color", "yellow");
         }
-        else if($("#" + moveRight).attr('class') !== "red" && $("#" + moveRight).attr('class') !== "black"){
-             $("#" + moveRight).css("background-color", "yellow");
+        if ($("#" + moveRightRed).attr('class') !== "red" && $("#" + moveRightRed).attr('class') !== "black") {
+            $("#" + moveRightRed).css("background-color", "yellow");
         }
 
-        $("#" + moveLeft).click(function() {
-            if ($("#" + moveLeft).contents().attr('class') === "red") {
+        $("#" + moveLeftRed).click(function() {
+            if ($("#" + moveLeftRed).contents().attr('class') === "red") {
 
-            } else if ($("#" + moveLeft).contents().attr('class') !== "red"  && $("#" + moveLeft).contents().attr('class') !== "black") {
-                $("#" + moveLeft).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeft);
+            } else if ($("#" + moveLeftRed).contents().attr('class') !== "red" && $("#" + moveLeftRed).contents().attr('class') !== "black") {
+                $("#" + moveLeftRed).empty();
+                $("#" + parentId).contents().appendTo("#" + moveLeftRed);
                 turnCounter = 0;
+                resetMove()
             }
         });
-        $("#" + moveLeftJump).click(function() {
-            if ($("#" + moveLeft).contents().attr('class') === "red") {
+        $("#" + moveLeftRedJump).click(function() {
+            if ($("#" + moveLeftRed).contents().attr('class') === "red") {
 
-            } else if ($("#" + moveLeft).contents().attr('class') === "black" && $("#" + moveLeftJump).contents().attr('class') !== "red" && $("#" + moveLeftJump).contents().attr('class') !== "black") {
-                $("#" + moveLeft).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeftJump);
+            } else if ($("#" + moveLeftRed).contents().attr('class') === "black" && $("#" + moveLeftRedJump).contents().attr('class') !== "red" && $("#" + moveLeftRedJump).contents().attr('class') !== "black") {
+                $("#" + moveLeftRed).empty();
+                $("#" + parentId).contents().appendTo("#" + moveLeftRedJump);
                 turnCounter = 0;
+                resetMove()
             }
         });
-        $("#" + moveRight).click(function() {
-            if ($("#" + moveRight).contents().attr('class') === "red") {
+        $("#" + moveRightRed).click(function() {
+            if ($("#" + moveRightRed).contents().attr('class') === "red") {
 
-            } else if ($("#" + moveRight).contents().attr('class') !== "red" && $("#" + moveRight).contents().attr('class') !== "black") {
-                $("#" + moveRight).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRight);
+            } else if ($("#" + moveRightRed).contents().attr('class') !== "red" && $("#" + moveRightRed).contents().attr('class') !== "black") {
+                $("#" + moveRightRed).empty();
+                $("#" + parentId).contents().appendTo("#" + moveRightRed);
                 turnCounter = 0
+                resetMove()
             }
         });
-        $("#" + moveRightJump).click(function() {
-            if ($("#" + moveRight).contents().attr('class') === "red") {
+        $("#" + moveRightRedJump).click(function() {
+            if ($("#" + moveRightRed).contents().attr('class') === "red") {
 
-            } else if ($("#" + moveRight).contents().attr('class') !== "red" && $("#" + moveRightJump).contents().attr('class') !== "red" && $("#" + moveRightJump).contents().attr('class') !== "black") {
-                $("#" + moveRight).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRightJump);
+            } else if ($("#" + moveRightRed).contents().attr('class') !== "red" && $("#" + moveRightRedJump).contents().attr('class') !== "red" && $("#" + moveRightRedJump).contents().attr('class') !== "black") {
+                $("#" + moveRightRed).empty();
+                $("#" + parentId).contents().appendTo("#" + moveRightRedJump);
                 turnCounter = 0
+                resetMove()
             }
         });
 
     } else if (turnCounter === 0 && $(this).attr('class') === "black") {
-        moveLeft = ""
-        moveRight = ""
-        moveLeftJump = ""
-        moveRightJump = ""
-        moveLeft = Number(parentId) - 11;
-        moveRight = Number(parentId) - 9;
-        moveLeftJump = Number(parentId) - 22;
-        moveRightJump = Number(parentId) - 18;
-if ($("#" + moveLeftJump).contents().attr('class') !== "red" && $("#" + moveLeftJump).contents().attr('class') !== "black" && $("#" + moveLeft).contents().attr('class') === "red") {
-            console.log($("#" + moveLeft).contents().attr('class'))
-            $("#" + moveLeftJump).css("background-color", "yellow");
+        moveLeftBlack = ""
+        moveRightBlack = ""
+        moveLeftBlackJump = ""
+        moveRightBlackJump = ""
+        moveLeftBlack = Number(parentId) - 11;
+        moveRightBlack = Number(parentId) - 9;
+        moveLeftBlackJump = Number(parentId) - 22;
+        moveRightBlackJump = Number(parentId) - 18;
+        if ($("#" + moveLeftBlackJump).contents().attr('class') !== "red" && $("#" + moveLeftBlackJump).contents().attr('class') !== "black" && $("#" + moveLeftBlack).contents().attr('class') === "red") {
+            $("#" + moveLeftBlackJump).css("background-color", "yellow");
         }
-        else if($("#" + moveLeft).attr('class') !== "red" && $("#" + moveLeft).attr('class') !== "black"){
-            $("#" + moveLeft).css("background-color", "yellow");
+        if ($("#" + moveLeftBlack).attr('class') !== "red" && $("#" + moveLeftBlack).attr('class') !== "black") {
+            $("#" + moveLeftBlack).css("background-color", "yellow");
         }
-        if ($("#" + moveRightJump).contents().attr('class') !== "red" && $("#" + moveRightJump).contents().attr('class') !== "black" && $("#" + moveRight).contents().attr('class') === "red") {
-            $("#" + moveRightJump).css("background-color", "yellow");
+        if ($("#" + moveRightBlackJump).contents().attr('class') !== "red" && $("#" + moveRightBlackJump).contents().attr('class') !== "black" && $("#" + moveRightBlack).contents().attr('class') === "red") {
+            $("#" + moveRightBlackJump).css("background-color", "yellow");
         }
-        else if($("#" + moveRight).attr('class') !== "red" && $("#" + moveRight).attr('class') !== "black"){
-             $("#" + moveRight).css("background-color", "yellow");
+        if ($("#" + moveRightBlack).attr('class') !== "red" && $("#" + moveRightBlack).attr('class') !== "black") {
+            $("#" + moveRightBlack).css("background-color", "yellow");
         }
 
-        $("#" + moveLeft).click(function() {
-            if ($("#" + moveLeft).contents().attr('class') === "black") {
+        $("#" + moveLeftBlack).click(function() {
+            if ($("#" + moveLeftBlack).contents().attr('class') === "black") {
 
-            } else if ($("#" + moveLeft).contents().attr('class') !== "red"  && $("#" + moveLeft).contents().attr('class') !== "black") {
-                $("#" + moveLeft).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeft);
+            } else if ($("#" + moveLeftBlack).contents().attr('class') !== "red" && $("#" + moveLeftBlack).contents().attr('class') !== "black") {
+                $("#" + moveLeftBlack).empty();
+                $("#" + parentId).contents().appendTo("#" + moveLeftBlack);
                 turnCounter = 1;
+                resetMove()
             }
         });
-        $("#" + moveLeftJump).click(function() {
-            if ($("#" + moveLeft).contents().attr('class') === "black") {
+        $("#" + moveLeftBlackJump).click(function() {
+            if ($("#" + moveLeftBlack).contents().attr('class') === "black") {
 
-            } else if ($("#" + moveLeft).contents().attr('class') === "red" && $("#" + moveLeftJump).contents().attr('class') !== "red" && $("#" + moveLeftJump).contents().attr('class') !== "black") {
-                $("#" + moveLeft).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeftJump);
+            } else if ($("#" + moveLeftBlack).contents().attr('class') === "red" && $("#" + moveLeftBlackJump).contents().attr('class') !== "red" && $("#" + moveLeftBlackJump).contents().attr('class') !== "black") {
+                $("#" + moveLeftBlack).empty();
+                $("#" + parentId).contents().appendTo("#" + moveLeftBlackJump);
                 turnCounter = 1;
+                resetMove()
             }
         });
-        $("#" + moveRight).click(function() {
-            if ($("#" + moveRight).contents().attr('class') === "black") {
+        $("#" + moveRightBlack).click(function() {
+            if ($("#" + moveRightBlack).contents().attr('class') === "black") {
 
-            } else if ($("#" + moveRight).contents().attr('class') !== "red" && $("#" + moveRight).contents().attr('class') !== "black") {
-                $("#" + moveRight).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRight);
+            } else if ($("#" + moveRightBlack).contents().attr('class') !== "red" && $("#" + moveRightBlack).contents().attr('class') !== "black") {
+                $("#" + moveRightBlack).empty();
+                $("#" + parentId).contents().appendTo("#" + moveRightBlack);
                 turnCounter = 1;
+                resetMove()
             }
         });
-        $("#" + moveRightJump).click(function() {
-            if ($("#" + moveRight).contents().attr('class') === "black") {
+        $("#" + moveRightBlackJump).click(function() {
+            if ($("#" + moveRightBlack).contents().attr('class') === "black") {
 
-            } else if ($("#" + moveRight).contents().attr('class') !== "black" && $("#" + moveRightJump).contents().attr('class') !== "red" && $("#" + moveRightJump).contents().attr('class') !== "black") {
-                $("#" + moveRight).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRightJump);
+            } else if ($("#" + moveRightBlack).contents().attr('class') !== "black" && $("#" + moveRightBlackJump).contents().attr('class') !== "red" && $("#" + moveRightBlackJump).contents().attr('class') !== "black") {
+                $("#" + moveRightBlack).empty();
+                $("#" + parentId).contents().appendTo("#" + moveRightBlackJump);
                 turnCounter = 1;
+                resetMove()
             }
         });
 
@@ -140,4 +148,15 @@ if ($("#" + moveLeftJump).contents().attr('class') !== "red" && $("#" + moveLeft
 function resetSquareColors() {
     $(".black_square").css("background-color", "black");
     $(".red_square").css("background-color", "red");
+}
+
+function resetMove() {
+    moveLeftBlack = ""
+    moveLeftBlackJump = ""
+    moveRightBlack = ""
+    moveRightBlackJump = ""
+    moveLeftRed = ""
+    moveLeftRedJump = ""
+    moveRightRed = ""
+    moveRightRedJump = ""
 }
