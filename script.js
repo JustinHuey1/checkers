@@ -1,12 +1,16 @@
-
+// capturing and moving is inconsitent / only works sometimes
+// fix that
 var turnCounter = 1;
 $(".square").click(function() {
     if ($(this).css("background-color") === 'rgb(255, 255, 0)') {
         resetSquareColors()
     }
 });
+var parentIdRed = "";
+var parentIdBlack = "";
 $("img").click(function() {
     resetSquareColors()
+
     var moveLeftRed = ""
     var moveRightRed = ""
     var moveLeftRedJump = ""
@@ -15,16 +19,16 @@ $("img").click(function() {
     var moveRightBlack = ""
     var moveLeftBlackJump = ""
     var moveRightBlackJump = ""
-    var parentId = $(this).parent().attr('id');
     if (turnCounter === 1 && $(this).attr('class') === "red") {
+        parentIdRed = $(this).parent().attr('id');
         moveLeftRed = ""
         moveRightRed = ""
         moveLeftRedJump = ""
         moveRightRedJump = ""
-        moveLeftRed = 9 + Number(parentId);
-        moveRightRed = 11 + Number(parentId);
-        moveLeftRedJump = 18 + Number(parentId);
-        moveRightRedJump = 22 + Number(parentId);
+        moveLeftRed = 9 + Number(parentIdRed);
+        moveRightRed = 11 + Number(parentIdRed);
+        moveLeftRedJump = 18 + Number(parentIdRed);
+        moveRightRedJump = 22 + Number(parentIdRed);
         if ($("#" + moveLeftRedJump).contents().attr('class') !== "red" && $("#" + moveLeftRedJump).contents().attr('class') !== "black" && $("#" + moveLeftRed).contents().attr('class') === "black") {
             $("#" + moveLeftRedJump).css("background-color", "yellow");
         }
@@ -42,8 +46,8 @@ $("img").click(function() {
             if ($("#" + moveLeftRed).contents().attr('class') === "red") {
 
             } else if ($("#" + moveLeftRed).contents().attr('class') !== "red" && $("#" + moveLeftRed).contents().attr('class') !== "black") {
-                $("#" + moveLeftRed).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeftRed);
+
+                $("#" + parentIdRed).contents().appendTo("#" + moveLeftRed);
                 turnCounter = 0;
                 resetMove()
             }
@@ -53,7 +57,7 @@ $("img").click(function() {
 
             } else if ($("#" + moveLeftRed).contents().attr('class') === "black" && $("#" + moveLeftRedJump).contents().attr('class') !== "red" && $("#" + moveLeftRedJump).contents().attr('class') !== "black") {
                 $("#" + moveLeftRed).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeftRedJump);
+                $("#" + parentIdRed).contents().appendTo("#" + moveLeftRedJump);
                 turnCounter = 0;
                 resetMove()
             }
@@ -62,8 +66,7 @@ $("img").click(function() {
             if ($("#" + moveRightRed).contents().attr('class') === "red") {
 
             } else if ($("#" + moveRightRed).contents().attr('class') !== "red" && $("#" + moveRightRed).contents().attr('class') !== "black") {
-                $("#" + moveRightRed).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRightRed);
+                $("#" + parentIdRed).contents().appendTo("#" + moveRightRed);
                 turnCounter = 0
                 resetMove()
             }
@@ -71,23 +74,24 @@ $("img").click(function() {
         $("#" + moveRightRedJump).click(function() {
             if ($("#" + moveRightRed).contents().attr('class') === "red") {
 
-            } else if ($("#" + moveRightRed).contents().attr('class') !== "red" && $("#" + moveRightRedJump).contents().attr('class') !== "red" && $("#" + moveRightRedJump).contents().attr('class') !== "black") {
+            } else if ($("#" + moveRightRed).contents().attr('class') ==="black" && $("#" + moveRightRedJump).contents().attr('class') !== "red" && $("#" + moveRightRedJump).contents().attr('class') !== "black") {
                 $("#" + moveRightRed).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRightRedJump);
+                $("#" + parentIdRed).contents().appendTo("#" + moveRightRedJump);
                 turnCounter = 0
                 resetMove()
             }
         });
 
     } else if (turnCounter === 0 && $(this).attr('class') === "black") {
+        parentIdBlack = $(this).parent().attr('id');
         moveLeftBlack = ""
         moveRightBlack = ""
         moveLeftBlackJump = ""
         moveRightBlackJump = ""
-        moveLeftBlack = Number(parentId) - 11;
-        moveRightBlack = Number(parentId) - 9;
-        moveLeftBlackJump = Number(parentId) - 22;
-        moveRightBlackJump = Number(parentId) - 18;
+        moveLeftBlack = Number(parentIdBlack) - 11;
+        moveRightBlack = Number(parentIdBlack) - 9;
+        moveLeftBlackJump = Number(parentIdBlack) - 22;
+        moveRightBlackJump = Number(parentIdBlack) - 18;
         if ($("#" + moveLeftBlackJump).contents().attr('class') !== "red" && $("#" + moveLeftBlackJump).contents().attr('class') !== "black" && $("#" + moveLeftBlack).contents().attr('class') === "red") {
             $("#" + moveLeftBlackJump).css("background-color", "yellow");
         }
@@ -105,8 +109,7 @@ $("img").click(function() {
             if ($("#" + moveLeftBlack).contents().attr('class') === "black") {
 
             } else if ($("#" + moveLeftBlack).contents().attr('class') !== "red" && $("#" + moveLeftBlack).contents().attr('class') !== "black") {
-                $("#" + moveLeftBlack).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeftBlack);
+                $("#" + parentIdBlack).contents().appendTo("#" + moveLeftBlack);
                 turnCounter = 1;
                 resetMove()
             }
@@ -116,7 +119,7 @@ $("img").click(function() {
 
             } else if ($("#" + moveLeftBlack).contents().attr('class') === "red" && $("#" + moveLeftBlackJump).contents().attr('class') !== "red" && $("#" + moveLeftBlackJump).contents().attr('class') !== "black") {
                 $("#" + moveLeftBlack).empty();
-                $("#" + parentId).contents().appendTo("#" + moveLeftBlackJump);
+                $("#" + parentIdBlack).contents().appendTo("#" + moveLeftBlackJump);
                 turnCounter = 1;
                 resetMove()
             }
@@ -125,8 +128,7 @@ $("img").click(function() {
             if ($("#" + moveRightBlack).contents().attr('class') === "black") {
 
             } else if ($("#" + moveRightBlack).contents().attr('class') !== "red" && $("#" + moveRightBlack).contents().attr('class') !== "black") {
-                $("#" + moveRightBlack).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRightBlack);
+                $("#" + parentIdBlack).contents().appendTo("#" + moveRightBlack);
                 turnCounter = 1;
                 resetMove()
             }
@@ -134,9 +136,9 @@ $("img").click(function() {
         $("#" + moveRightBlackJump).click(function() {
             if ($("#" + moveRightBlack).contents().attr('class') === "black") {
 
-            } else if ($("#" + moveRightBlack).contents().attr('class') !== "black" && $("#" + moveRightBlackJump).contents().attr('class') !== "red" && $("#" + moveRightBlackJump).contents().attr('class') !== "black") {
+            } else if ($("#" + moveRightBlack).contents().attr('class') ==="red" && $("#" + moveRightBlackJump).contents().attr('class') !== "red" && $("#" + moveRightBlackJump).contents().attr('class') !== "black") {
                 $("#" + moveRightBlack).empty();
-                $("#" + parentId).contents().appendTo("#" + moveRightBlackJump);
+                $("#" + parentIdBlack).contents().appendTo("#" + moveRightBlackJump);
                 turnCounter = 1;
                 resetMove()
             }
