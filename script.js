@@ -136,7 +136,7 @@ $("img").click(function() {
         $("#" + moveRightBlackJump).click(function() {
             if ($("#" + moveRightBlack).contents().attr('class') === "black") {
 
-            } else if ($("#" + moveRightBlack).contents().attr('class') ==="red" && $("#" + moveRightBlackJump).contents().attr('class') !== "red" && $("#" + moveRightBlackJump).contents().attr('class') !== "black") {
+            } else if ($("#" + moveRightBlack).contents().attr('class') === "red" && $("#" + moveRightBlackJump).contents().attr('class') !== "red" && $("#" + moveRightBlackJump).contents().attr('class') !== "black") {
                 $("#" + moveRightBlack).empty();
                 $("#" + parentIdBlack).contents().appendTo("#" + moveRightBlackJump);
                 turnCounter = 1;
