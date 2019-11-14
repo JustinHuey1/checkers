@@ -9,8 +9,8 @@ $(".square").click(function() {
 var parentIdRed = "";
 var parentIdBlack = "";
 $("img").click(function() {
-    resetSquareColors()
-
+    resetSquareColors();
+    resetJumpVars();
     var moveLeftRed = ""
     var moveRightRed = ""
     var moveLeftRedJump = ""
@@ -162,3 +162,13 @@ function resetMove() {
     moveRightRed = ""
     moveRightRedJump = ""
 }
+function resetJumpVars(){
+    moveLeftRed = ""
+    moveRightRed = ""
+    moveLeftRedJump = ""
+    moveRightRedJump = ""
+    moveLeftBlack = ""
+    moveRightBlack = ""
+    moveLeftBlackJump = ""
+    moveRightBlackJump = ""
+};
