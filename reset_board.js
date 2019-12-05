@@ -13,6 +13,6 @@ function resetSquareColors() {
 resetSquareColors()
 while(counter<78){
     counter=counter+1;
-    $("#" +counter).empty
+    $("#" +counter).empty();
 }
 });
