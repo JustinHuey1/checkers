@@ -35,3 +35,10 @@
 	height:45px;
     padding:2px;
 }
+
+#boardReset{
+    background-color: #EEEEEE;
+    height:45px;
+    width:45px;
+    padding: 2px;
+};
