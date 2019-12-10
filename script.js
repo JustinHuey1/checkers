@@ -151,7 +151,12 @@ function resetSquareColors() {
     $(".black_square").css("background-color", "black");
     $(".red_square").css("background-color", "red");
 }
-
+$("#boardReset").click(function(){
+    var i=0;
+    while(i<78, i++){
+        $("#"+i).empty();
+    }
+});
 function resetMove() {
     moveLeftBlack = ""
     moveLeftBlackJump = ""
