@@ -153,10 +153,17 @@ function resetSquareColors() {
 }
 $("#boardReset").click(function(){
     var i=0;
-    while(i<78, i++){
+    while(i<78){
         $("#"+i).empty();
+        i=i+1;
     }
+    resetGame();
 });
+function resetGame(){
+    resetMove();
+    resetJumpVars();
+    //here add the code to put images in the correct spots
+}
 function resetMove() {
     moveLeftBlack = ""
     moveLeftBlackJump = ""
